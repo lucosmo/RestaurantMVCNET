@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using RestaurantMVCNET.Data;
+
 namespace RestaurantMVCNET
 {
     public class Program
@@ -9,7 +12,10 @@ namespace RestaurantMVCNET
     options.UseSqlServer(builder.Configuration.GetConnectionString("MvcRestaurantContext")));
             var app = builder.Build();
 
-            app.MapGet("/", () => "Hello World!");
+            //app.MapGet("/", () => "Hello World!");
+            app.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
 
