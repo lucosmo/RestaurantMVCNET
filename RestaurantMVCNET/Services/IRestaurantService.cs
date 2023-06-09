@@ -5,6 +5,7 @@ namespace RestaurantMVCNET.Services
     public interface IRestaurantService
     {
         Task<Restaurant> GetRestaurant(int id);
+        Task<IEnumerable<Restaurant>> GetAllRestaurants();
         Task AddRestaurant(Restaurant restaurant);
         Task RemoveRestaurant(int id);
         Task UpdateRestuarant(Restaurant restaurant);
