@@ -20,7 +20,7 @@ namespace RestaurantMVCNET.Controllers
             return View(allRestaurants);
         }
         [HttpGet]
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             return View();
         }
@@ -29,12 +29,12 @@ namespace RestaurantMVCNET.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Restaurant restuarant)
         {
-            try
-            {
+           // try
+            //{
                 await _db.AddRestaurant(restuarant);
                 return RedirectToAction("Index");
-            }
-            catch (Exception ex)
+           // }
+           /* catch (Exception ex)
             {
 
 
@@ -43,7 +43,7 @@ namespace RestaurantMVCNET.Controllers
                 return View("Error", addingError);
 
 
-            }
+            }*/
         }
     }
 }
