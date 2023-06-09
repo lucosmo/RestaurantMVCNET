@@ -1,0 +1,58 @@
+﻿@model Restaurant
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create new Restaurant</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group mb-3">
+            <h4>Enter Name:</h4>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Name, new {@class = "form-control validate"})
+                @Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
+            </div>
+            <h4>Enter description:</h4>
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Description, new {@class = "form-control content-view align-text-top validate"})
+                @Html.ValidationMessageFor(model => model.Description, "", new {@class = "text-danger"})
+            </div>
+            <h4>Enter Address:</h4>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Address, new {@class = "form-control validate"})
+                @Html.ValidationMessageFor(model => model.Address, "", new {@class = "text-danger"})
+            </div>
+            <h4>Enter Capacity:</h4>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Capacity, new {@class = "form-control validate"})
+                @Html.ValidationMessageFor(model => model.Capacity, "", new {@class = "text-danger"})
+            </div>
+            <h4>Enter Phone number:</h4>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.PhoneNumber, new {@class = "form-control validate"})
+                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new {@class = "text-danger"})
+            </div>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Email, new {@class = "form-control validate"})
+                @Html.ValidationMessageFor(model => model.Email, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+    
+        <div class="form-group my-3">
+            
+            <input type="submit" value="Save" class="btn btn-primary" id="SaveButtonCreate" disabled="disabled" />
+        </div>
+    </div>
+}
+
+@Html.ActionLink("Back to List", "Index")
