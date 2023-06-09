@@ -25,7 +25,11 @@ namespace RestaurantMVCNET.Services
 
         public async Task<IEnumerable<Restaurant>> GetAllRestaurants()
         {
-            return await _context.Restaurants.OrderBy(x => x.Name).ToListAsync();
+            if (_context.Restaurants.Any())
+                return await _context.Restaurants.OrderBy(x => x.Name).ToListAsync();
+            else
+                return null;
+
         }
 
         public Task<Customer> GetCustomer(int id)
