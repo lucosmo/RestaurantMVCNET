@@ -6,7 +6,7 @@ namespace RestaurantMVCNET
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +20,15 @@ namespace RestaurantMVCNET
             var app = builder.Build();
 
             //app.MapGet("/", () => "Hello World!");
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                var context = services.GetRequiredService<MvcRestaurantContext>();
+                context.Database.EnsureCreated();
+                await DbInitializer.Initialize(context);
+            }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
