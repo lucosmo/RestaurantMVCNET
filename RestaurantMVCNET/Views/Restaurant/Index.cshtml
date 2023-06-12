@@ -1,5 +1,4 @@
-﻿@using RestaurantMVCNET.Models
-@model IEnumerable<Restaurant>
+﻿@model IEnumerable<RestaurantMVCNET.Models.Restaurant>
 @{
     ViewBag.Title = "Welcome in our restaurant :)";
 }
@@ -8,4 +7,21 @@
 <p>Please choose one restaurant</p>
 @Model.Count()
 
+<table class="table mb-4">
+@foreach(var restaurant in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(restaurant => restaurant.Name)
+
+        </td>
+        <td>
+                @Html.ActionLink("Edit", "Edit", new { id = restaurant.Id}) |
+                @Html.ActionLink("Details", "Details", new {id = restaurant.Id}) |
+                @Html.ActionLink("Delete", "Delete", new {id = restaurant.Id})
+        </td>
+    </tr>
+    
+}
+</table>
 @Html.ActionLink("Create restuarant", "Create")
