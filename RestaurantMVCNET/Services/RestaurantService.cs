@@ -72,9 +72,18 @@ namespace RestaurantMVCNET.Services
             throw new NotImplementedException();
         }
 
-        public Task RemoveRestaurant(int id)
+        public async Task RemoveRestaurant(int id)
         {
-            throw new NotImplementedException();
+            if(_context.Restaurants.Any())
+            {
+                var restaurant = await _context.Restaurants.FirstOrDefaultAsync(x => x.Id == id);
+                _context.Restaurants.Remove(restaurant);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                return;
+            }
         }
 
         public Task RemoveTable(int id)
