@@ -45,5 +45,27 @@ namespace RestaurantMVCNET.Controllers
 
             }*/
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var model = await _db.GetRestaurant(id);
+            if (model == null)
+            {
+                return View("Error");
+            }
+            else
+            {
+                return View(model);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id, IFormCollection fc)
+        {
+            await _db.RemoveRestaurant(id);
+            return RedirectToAction("Index");
+        }
     }
 }
